@@ -9,6 +9,7 @@
 - [Overview](#overview)
 - [Quick Start](#quick-start)
 - [Calculators Included](#calculators-included)
+- [Visualization Tools](#visualization-tools)
 - [Installation & Usage](#installation--usage)
 - [About CFG Young Investors](#about-cfg-young-investors)
 - [Contributing](#contributing)
@@ -16,13 +17,14 @@
 
 ## Overview
 
-Open-source financial calculators designed for educational use, created to support the CFG Young Investors financial literacy curriculum. These tools help students and educators understand key financial concepts through interactive calculators.
+Open-source financial calculators designed for educational use, created to support the CFG Young Investors financial literacy curriculum. These tools help students and educators understand key financial concepts through interactive calculators and visualizations.
 
 **Features:**
 - Rule of 72 Calculator — estimate investment doubling time
 - Compound Interest Calculator — compare savings vehicles
 - Break-Even Calculator — analyze business profitability
 - Retirement Income Estimator — plan for retirement using the 4% rule
+- Compound Interest Visualizer — ASCII charts showing investment growth
 
 ## Quick Start
 
@@ -149,6 +151,59 @@ def retirement_income_estimate(
     }
 ```
 
+## Visualization Tools
+
+### Compound Interest Visualizer
+
+Create ASCII charts to visualize investment growth over time and compare different scenarios.
+
+**Features:**
+- Side-by-side curve comparison with ASCII graphics
+- Auto-scaling for different value ranges
+- Summary tables with final values and total growth
+- Multiple pre-built comparisons
+
+**Run it:**
+```bash
+python compound_interest_visualizer.py
+```
+
+**Example usage:**
+```python
+from compound_interest_visualizer import compare_investments, compare_rates
+
+# Compare investment types
+print(compare_investments(100000, 30))
+
+# Compare interest rates
+print(compare_rates(100000, 30))
+
+# Create custom comparison
+from compound_interest_visualizer import create_ascii_chart
+
+curves = [
+    {'label': 'Conservative', 'principal': 50000, 'rate': 0.03, 'n': 1},
+    {'label': 'Moderate', 'principal': 50000, 'rate': 0.07, 'n': 1},
+    {'label': 'Aggressive', 'principal': 50000, 'rate': 0.10, 'n': 1},
+]
+print(create_ascii_chart(curves, "Portfolio Strategy Comparison", 20))
+```
+
+**Sample Output:**
+```
+Investment Growth: $100,000 over 30 years
+================================================================
+
+$300,000 |                       C
+$280,000 |                     C
+$260,000 |                   C
+         |
+$100,000 |  A B
+  $50,000 | A B
+         +---+---+---+---+---+
+   Years | 0   10   20   30
+```
+
 ## Installation & Usage
 
 ### Prerequisites
@@ -166,15 +221,23 @@ pip install -r requirements.txt
 
 # Run a calculator
 python calculators.py
+
+# Run visualizer
+python compound_interest_visualizer.py
 ```
 
 ### Using in Your Project
 
 ```python
 from calculators import rule_of_72, compound_interest, break_even_units, retirement_income_estimate
+from compound_interest_visualizer import compare_investments
 
 # Use any calculator function
 result = rule_of_72(7.0)
+
+# Create visualizations
+chart = compare_investments(100000, 20)
+print(chart)
 ```
 
 ## About CFG Young Investors
@@ -200,6 +263,7 @@ We welcome contributions! Here's how to help:
 - Add unit tests
 - Enhance documentation
 - Create interactive web interfaces
+- Suggest new calculators in [issue #1](https://github.com/JessicaCFG/caer-financial-calculators/issues/1)
 
 ## License
 
